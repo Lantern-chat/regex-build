@@ -46,8 +46,8 @@ pub fn write_regex<W: std::io::Write>(
         r#"
         pub static {name}: once_cell::sync::Lazy<Regex<DenseDFA<&'static [u{size}], u{size}>>> = once_cell::sync::Lazy::new(|| unsafe {{
             Regex::from_dfas(
-                DenseDFA::from_bytes(&regex_util::rt::DenseDFABytes{size}({forward:?}).0),
-                DenseDFA::from_bytes(&regex_util::rt::DenseDFABytes{size}({reverse:?}).0)
+                DenseDFA::from_bytes(&regex_build::rt::DenseDFABytes{size}({forward:?}).0),
+                DenseDFA::from_bytes(&regex_build::rt::DenseDFABytes{size}({reverse:?}).0)
             )
         }});"#
     )?;
