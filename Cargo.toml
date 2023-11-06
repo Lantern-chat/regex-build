@@ -9,4 +9,5 @@ edition = "2021"
 build = ["dep:regex-automata"]
 
 [dependencies]
+regex = { version = "1.8", optional = true }
 regex-automata = { optional = true, version = "0.1.10", features = ["std"] }
