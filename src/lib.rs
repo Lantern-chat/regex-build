@@ -40,7 +40,7 @@ pub fn write_regex<W: std::io::Write>(
 
         write!(
             out,
-            r##"pub static {name}: once_cell::sync::Lazy<regex_build::regex::Regex> = once_cell::sync::Lazy::new(|| regex_build::regex::Regex::new({pattern:?}).unwrap());"##
+            r##"pub static {name}: ::std::sync::LazyLock<regex_build::regex::Regex> = ::std::sync::LazyLock::new(|| regex_build::regex::Regex::new({pattern:?}).unwrap());"##
         )?;
 
         Ok(())
@@ -92,7 +92,7 @@ pub fn write_regex<W: std::io::Write>(
 
     write!(
         out,
-        r#"pub static {name}: once_cell::sync::Lazy<Regex<DenseDFA<&'static [u{size}], u{size}>>> = once_cell::sync::Lazy::new(|| unsafe {{
+        r#"pub static {name}: ::std::sync::LazyLock<Regex<DenseDFA<&'static [u{size}], u{size}>>> = ::std::sync::LazyLock::new(|| unsafe {{
             Regex::from_dfas(
                 DenseDFA::from_bytes(&regex_build::rt::DenseDFABytes{size}({forward:?}).0),
                 DenseDFA::from_bytes(&regex_build::rt::DenseDFABytes{size}({reverse:?}).0)
